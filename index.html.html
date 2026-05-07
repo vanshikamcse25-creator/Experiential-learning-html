@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inkwell — Creative Text Editor</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@ 0,700;0,900;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400; 500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-canvas">
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<div class="grid-lines"></div>
+</div>
+
+<nav class="navbar">
+<div class="brand">
+<svg class="brand-star" viewBox="0 0 24 24"><path d="M12 2L13.9 8.4L20.5 9L15.5 13.7L17.1 20.5L12 17L6.9 20.5L8.5 13.7L3.5 9L10.1 8.4Z"/></svg>
+<span>Inkwell</span>
+</div>
+<div class="nav-links">
+<a href="#">Home</a>
+<a href="#">About</a>
+<a href="#">Contact</a>
+</div>
+<span class="nav-badge">v2.0</span>
+</nav>
+<main class="page">
+<div class="shell">
+
+<header class="shell-header">
+<div>
+<h1 class="shell-title">Creative <em>Studio</em></h1>
+<p class="shell-sub">Your ideas, beautifully formatted.</p>
+</div>
+<div class="header-stats">
+<div class="stat-chip" id="hw">0 words</div>
+<div class="stat-chip" id="hc">0 chars</div>
+<div class="stat-chip" id="hl">1 line</div>
+</div>
+</header>
+ 
+
+
+<!-- ══════════════ TOOLBAR ══════════════ -->
+<div class="toolbar">
+
+<!-- ROW 1 -->
+<div class="tb-row">
+
+<div class="tb-group">
+<span class="tb-label">Format</span>
+<div class="tb-btns">
+<button class="tbtn" id="btn-
+bold"	onclick="toggleBold()"><b>B</b><em>Bold</em></button>
+<button class="tbtn" id="btn-
+italic"	onclick="toggleItalic()"><i>I</i><em>Italic</em></button>
+<button class="tbtn" id="btn-underline" onclick="toggleUnderline()"><u>U</u><em>Underline</em></button>
+<button class="tbtn" id="btn-
+strike"	onclick="toggleStrike()"><s>S</s><em>Strike</em></button>
+</div>
+</div>
+
+<div class="tb-sep"></div>
+
+<div class="tb-group">
+<span class="tb-label">Alignment</span>
+<div class="tb-btns">
+<button class="tbtn" id="btn-left"	onclick="setAlign('left')">
+<svg viewBox="0 0 20 16" fill="currentColor"><rect x="0" y="0" width="20" height="2.5" rx="1.2"/><rect x="0" y="6.5" width="13" height="2.5" rx="1.2"/><rect x="0" y="13" width="16" height="2.5" rx="1.2"/></svg>
+<em>Left</em>
+</button>
+<button class="tbtn" id="btn-center" onclick="setAlign('center')">
+<svg viewBox="0 0 20 16" fill="currentColor"><rect x="0" y="0" width="20" height="2.5" rx="1.2"/><rect x="3.5" y="6.5" width="13" height="2.5" rx="1.2"/><rect x="2" y="13" width="16" height="2.5" rx="1.2"/></svg>
+<em>Center</em>
+</button>
+<button class="tbtn" id="btn-right"	onclick="setAlign('right')">
+<svg viewBox="0 0 20 16" fill="currentColor"><rect x="0" y="0" width="20" height="2.5" rx="1.2"/><rect x="7" y="6.5" width="13" height="2.5" rx="1.2"/><rect x="4" y="13" width="16" height="2.5" rx="1.2"/></svg>
+<em>Right</em>
+</button>
+<button class="tbtn" id="btn-justify" onclick="setAlign('justify')">
+<svg viewBox="0 0 20 16" fill="currentColor"><rect x="0" y="0" width="20" height="2.5" rx="1.2"/><rect x="0" y="6.5" width="20" height="2.5" rx="1.2"/><rect x="0" y="13" width="20" height="2.5" rx="1.2"/></svg>
+<em>Justify</em>
+</button>
+</div>
+</div>
+
+<div class="tb-sep"></div>
+ 
+
+
+
+<div class="tb-group">
+<span class="tb-label">Case</span>
+<div class="tb-btns">
+<button class="tbtn" onclick="toUpperCase()"><span class="mono-lbl">AA</span><em>Upper</em></button>
+<button class="tbtn" onclick="toLowerCase()"><span class="mono-lbl">aa</span><em>Lower</em></button>
+<button class="tbtn" onclick="toTitleCase()"><span class="mono-lbl">Aa</span><em>Title</em></button>
+</div>
+</div>
+
+</div>
+
+<div class="tb-row-divider"></div>
+
+<!-- ROW 2 -->
+<div class="tb-row">
+
+<div class="tb-group">
+<span class="tb-label">Lists</span>
+<div class="tb-btns">
+<button class="tbtn" onclick="insertBulletList()">
+<svg viewBox="0 0 20 16" fill="currentColor"><circle cx="2.5" cy="2.5" r="2.5"/><rect x="7" y="1" width="13" height="2.5" rx="1.2"/><circle cx="2.5" cy="8" r="2.5"/><rect x="7" y="6.5" width="9" height="2.5" rx="1.2"/><circle cx="2.5" cy="13.5" r="2.5"/><rect x="7" y="12" width="11" height="2.5" rx="1.2"/></svg>
+<em>Bullets</em>
+</button>
+<button class="tbtn" onclick="insertNumberList()">
+<svg viewBox="0 0 20 16" fill="currentColor"><text x="0" y="4" font-size="4.5">1.</text><rect x="7" y="1" width="13" height="2.5" rx="1.2"/><text x="0" y="9.5" font-size="4.5">2.</text><rect x="7" y="6.5" width="9" height="2.5" rx="1.2"/><text x="0" y="15" font-size="4.5">3.</text><rect x="7" y="12" width="11" height="2.5" rx="1.2"/></svg>
+<em>Numbered</em>
+</button>
+<button class="tbtn" onclick="insertQuote()">
+<svg viewBox="0 0 20 16" fill="currentColor"><path d="M1 1h7v7H6c0 3 1.5 4
+4 4v3c-5.5 0-9-3.5-9-8V1zm11 0h7v7h-2c0 3 1.5 4 4 4v3c-5.5 0-9-3.5-9-
+8V1z"/></svg>
+<em>Quote</em>
+</button>
+</div>
+</div>
+
+<div class="tb-sep"></div>
+
+<div class="tb-group">
+<span class="tb-label">Insert</span>
+ 
+
+
+<div class="tb-btns">
+<button class="tbtn" onclick="insertHeading()"><span class="mono-lbl">H1</span><em>Heading</em></button>
+<button class="tbtn" onclick="insertSubheading()"><span class="mono-lbl">H2</span><em>Subhead</em></button>
+<button class="tbtn" onclick="insertDivider()">
+<svg viewBox="0 0 20 8" fill="currentColor"><rect x="0" y="3" width="20" height="2" rx="1"/><circle cx="4" cy="4" r="2"/><circle cx="10" cy="4" r="2"/><circle cx="16" cy="4" r="2"/></svg>
+<em>Divider</em>
+</button>
+<button class="tbtn" onclick="insertDate()">
+<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="3" width="18" height="16" rx="2.5"/><line x1="5" y1="1" x2="5" y2="5"/><line x1="15" y1="1" x2="15" y2="5"/><line x1="1" y1="8" x2="19" y2="8"/></svg>
+<em>Date</em>
+</button>
+</div>
+</div>
+
+<div class="tb-sep"></div>
+
+<div class="tb-group">
+<span class="tb-label">Tools</span>
+<div class="tb-btns">
+<button class="tbtn" onclick="countWords()">
+<svg viewBox="0 0 20 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="2" y1="3" x2="18" y2="3"/><line x1="2" y1="8" x2="14" y2="8"/><line x1="2" y1="13" x2="16"
+y2="13"/><circle cx="17.5" cy="13" r="2.5" fill="currentColor" stroke="none"/></svg>
+<em>Count</em>
+</button>
+<button class="tbtn" onclick="copyAll()">
+<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="1" width="13" height="15" rx="2.5"/><rect x="1" y="5" width="13" height="15" rx="2.5"/></svg>
+<em>Copy</em>
+</button>
+<button class="tbtn" id="btn-find" onclick="toggleFind()">
+<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="8" r="6"/><line x1="12.5" y1="12.5" x2="19" y2="19"/></svg>
+<em>Find</em>
+</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- Find/Replace Bar -->
+ 
+
+
+<div class="find-bar" id="find-bar">
+<input class="find-input" id="find-input"	placeholder="Find…">
+<input class="find-input" id="replace-input" placeholder="Replace with…">
+<button class="find-action-btn" onclick="doReplace()">Replace All</button>
+<button class="find-close-btn" onclick="toggleFind()">✕</button>
+</div>
+
+<!-- Controls Row -->
+<div class="controls-row">
+<div class="ctrl-item">
+<label class="ctrl-label">Font Size</label>
+<select class="ctrl-sel" onchange="changeSize(this.value)">
+<option value="13px">13 px</option>
+<option value="15px" selected>15 px</option>
+<option value="17px">17 px</option>
+<option value="19px">19 px</option>
+<option value="22px">22 px</option>
+<option value="26px">26 px</option>
+</select>
+</div>
+<div class="ctrl-item">
+<label class="ctrl-label">Font Family</label>
+<select class="ctrl-sel" onchange="changeFont(this.value)">
+<option value="'DM Mono', monospace" selected>DM Mono</option>
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="'Playfair Display', serif">Playfair Display</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Courier New', monospace">Courier New</option>
+</select>
+</div>
+<div class="ctrl-item">
+<label class="ctrl-label">Line Height</label>
+<select class="ctrl-sel" onchange="changeLineHeight(this.value)">
+<option value="1.3">1.3 — Tight</option>
+<option value="1.6" selected>1.6 — Normal</option>
+<option value="2.0">2.0 — Loose</option>
+<option value="2.5">2.5 — Airy</option>
+</select>
+</div>
+<div class="ctrl-item ctrl-color">
+<label class="ctrl-label">Text Color</label>
+<input type="color" class="color-pick" value="#e8e0d4" onchange="changeColor(this.value)">
+</div>
+<div class="ctrl-item ctrl-color">
+<label class="ctrl-label">BG Color</label>
+<input type="color" class="color-pick" value="#12121e" onchange="changeBG(this.value)">
+</div>
+</div>
+
+<!-- Editor -->
+<div class="editor-wrap">
+ 
+
+
+<div class="gutter" id="gutter"></div>
+<textarea id="editor" spellcheck="true" placeholder="Start writing your story here..."></textarea>
+</div>
+
+<!-- Action Bar -->
+<div class="action-bar">
+<div class="ab-stats">
+<span id="sb-w">0 words</span>
+<span class="ab-dot">·</span>
+<span id="sb-c">0 chars</span>
+<span class="ab-dot">·</span>
+<span id="sb-l">1 line</span>
+</div>
+<div class="ab-btns">
+<button class="ab-btn ab-save"	onclick="saveText()">&#10022; Save Draft</button>
+<button class="ab-btn ab-export" onclick="exportText()">&#8595; Export
+.txt</button>
+<button class="ab-btn ab-clear" onclick="clearText()">&#10005; Clear</button>
+</div>
+</div>
+
+</div>
+</main>
+
+<footer class="site-footer">
+<span class="sf-star">&#10022;</span> Inkwell Creative Editor &nbsp;&middot;&nbsp; Crafted for Writers
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
